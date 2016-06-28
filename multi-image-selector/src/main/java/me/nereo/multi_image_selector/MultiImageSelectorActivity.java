@@ -82,7 +82,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
             mSubmitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(resultList != null && resultList.size() >0){
+					//v1.2 - Allow 0 length selections so users can deselect all images.
+                    if(resultList != null && resultList.size() >= 0){
                         // Notify success
                         Intent data = new Intent();
                         data.putStringArrayListExtra(EXTRA_RESULT, resultList);
@@ -130,7 +131,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
         int size = 0;
         if(resultList == null || resultList.size()<=0){
             mSubmitButton.setText(R.string.mis_action_done);
-            mSubmitButton.setEnabled(false);
+			//v1.2 - Do not disable button on 0 elements
+            //mSubmitButton.setEnabled(false);
         }else{
             size = resultList.size();
             mSubmitButton.setEnabled(true);
